@@ -1,0 +1,56 @@
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|ZCOOL+KuaiLe');
+
+body {
+  font-family: 'Open Sans Condensed', sans-serif;
+  max-width: 800px;
+  margin: auto;
+  background: white;
+  padding: 10px;
+  text-align: center;
+  color: LightBlue;
+}
+
+footer {
+   position: fixed;
+   bottom: 0;
+   left: 50%;
+   margin-left: -200px; /*negative half the width */
+   width: 400px;
+   height: 100px;
+}
+
+
+#title {
+  background: none;
+  border: none;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 30px;
+
+  font-family: 'ZCOOL KuaiLe', cursive;
+  font-style: italic;
+  text-shadow: #000 0px 0px 1px;
+  font-size: 60px;
+  color: pink;
+  display: block;
+}
+
+.thumbnail {
+  background-color: pink;
+  padding: 30px;
+}
+
+.smallThumbnail {
+  height: 120px;
+}
+
+input {
+  border-color: pink;
+  width: 400px;
+  height: 20px;
+}
+
+.mainText {
+  color: blue;
+}
