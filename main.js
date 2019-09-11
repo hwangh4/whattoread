@@ -1,3 +1,9 @@
+/*
+Author: Scarlett Hwang
+Date: September 2019
+This Javascript file manipulates the front-end properties of a book search and recommendation webpage.
+*/
+
 (function() {
   "use strict";
   window.addEventListener("load", init);
@@ -7,7 +13,6 @@
 
   function init() {
     id("search").addEventListener("click", function() {
-      //console.log(id("query").value);
       id("query").disabled = true;
       id("search").disabled = true;
       if(id("book").hasChildNodes()) {
@@ -21,17 +26,37 @@
   }
 
   function queryDB(keyword) {
-    //query = query + " " + keyword;
     fetch(URL + "?q=" + keyword)
       .then(checkStatus)
       .then(JSON.parse)
-      .then(showBooks)
+      .then(askInterest)
       .catch(function() {
         id("error-text").classList.remove("hidden");
         id("error-text").innerText =
            "Something went wrong with the request. Please try again later.";
-        //id("home").disabled = false;
       });
+    }
+
+    function askInterest(json) {
+      id("guide").innerText = "Do you mean...";
+
+      for (let i = 0; i < SIZE; i++) {
+        console.log(json.items[i].volumeInfo.title);
+        let button = document.createElement("button");
+        let strArr = str2nounArr(json.items[i].volumeInfo.title);
+        let string = "";
+        for (let j = 0; j < strArr.length; j++) {
+          string = string + " " + strArr[j];
+        }
+        button.innerText = string;
+
+        button.addEventListener("click", function() {
+          queryDB(this.innerText);
+        })
+
+        button.classList.add("choose-button");
+        id("book").appendChild(button);
+      }
     }
 
     function showBooks(json) {
@@ -105,7 +130,7 @@
     }
 
     function isStopWord(word) {
-      let stopwords = ["is", "are", "the", "a", "an", "of", "in", "on", "to"];
+      let stopwords = ["is", "are", "the", "a", "an", "of", "in", "on", "to", "and"];
 
       if (stopwords.includes(word.toLowerCase())) {
         return true;

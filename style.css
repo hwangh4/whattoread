@@ -36,6 +36,11 @@ footer {
   display: block;
 }
 
+#book {
+  display: flex;
+  justify-content: center;
+}
+
 .thumbnail {
   background-color: pink;
   padding: 30px;
@@ -53,4 +58,10 @@ input {
 
 .mainText {
   color: blue;
+}
+
+.choose-button {
+  display: block;
+  border: 5px solid;
+  border-color: pink;
 }
