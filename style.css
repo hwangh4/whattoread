@@ -37,8 +37,7 @@ footer {
 }
 
 #book {
-  display: flex;
-  justify-content: center;
+
 }
 
 .thumbnail {
@@ -62,6 +61,12 @@ input {
 
 .choose-button {
   display: block;
-  border: 5px solid;
+  border: 1px solid;
+  margin-left: 30%;
+  margin-right: 30%;
   border-color: pink;
+}
+
+.hidden {
+  display: none;
 }

@@ -15,18 +15,18 @@ This Javascript file manipulates the front-end properties of a book search and r
     id("search").addEventListener("click", function() {
       id("query").disabled = true;
       id("search").disabled = true;
-      if(id("book").hasChildNodes()) {
-        while(id("book").firstChild) {
-          id("book").removeChild(id("book").firstChild);
-        }
-      }
       queryDB(id("query").value);
     });
-
   }
 
-  function queryDB(keyword) {
-    fetch(URL + "?q=" + keyword)
+   function queryDB(keyword) {
+     if(id("book").hasChildNodes()) {
+       while(id("book").firstChild) {
+         id("book").removeChild(id("book").firstChild);
+       }
+     }
+
+     fetch(URL + "?q=" + keyword)
       .then(checkStatus)
       .then(JSON.parse)
       .then(askInterest)
@@ -39,10 +39,11 @@ This Javascript file manipulates the front-end properties of a book search and r
 
     function askInterest(json) {
       id("guide").innerText = "Do you mean...";
+      id("query-div").classList.add("hidden");
 
       for (let i = 0; i < SIZE; i++) {
         console.log(json.items[i].volumeInfo.title);
-        let button = document.createElement("button");
+        let button = document.createElement("p");
         let strArr = str2nounArr(json.items[i].volumeInfo.title);
         let string = "";
         for (let j = 0; j < strArr.length; j++) {
@@ -61,7 +62,7 @@ This Javascript file manipulates the front-end properties of a book search and r
 
     function showBooks(json) {
       // TEST
-      console.log(json.items);
+      //console.log(json.items);
 
       let count = json.items.length;
 
