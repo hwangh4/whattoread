@@ -12,6 +12,7 @@ recommendation webpage.
   const SIZE = 5;
   let final = "";
   let buttonCount = 0;
+  let gauge = 0;
 
   function init() {
     id("search").addEventListener("click", function() {
@@ -44,6 +45,10 @@ recommendation webpage.
         id("guide").innerText = "What keywords interest you the most?";
         id("query-div").classList.add("hidden");
 
+        // increase the bar gauge
+        gauge += 30;
+        id("bar").style.width = gauge + "%";
+
         for (let i = 0; i < SIZE; i++) {
           //console.log(json.items[i].volumeInfo.title);
           let button = document.createElement("p");
@@ -61,9 +66,12 @@ recommendation webpage.
           })
 
           button.classList.add("choose-button");
+          button.style.cursor = "pointer";
           id("book").appendChild(button);
         }
       } else {
+        id("guide").innerText = "Here's your WhattoRead for this week!";
+        id("bar").style.width = "100%";
         fetchBook(final)
       }
     }
