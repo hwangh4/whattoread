@@ -1,4 +1,4 @@
-# whattoread
+# WhattoRead
 ##### Scarlett Hwang  |  Personal Project  |  Last Edited: December 22nd, 2019
 <br>
 These programs build an intuitive book recommendation service for English learning
